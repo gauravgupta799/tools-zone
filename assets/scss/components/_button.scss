@@ -1,0 +1,137 @@
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/breakpoints' as *;
+
+
+.btn{
+    position: relative;
+    overflow: hidden;
+    text-transform:capitalize;
+    backface-visibility: hidden;
+    border:none;
+    outline:none;
+    font-size:rem(16);
+    padding:em(9) em(18);
+    background:$clr-secondary;
+    color:$clr-white;
+    font-family: $ff-regular;
+    @include border-radius(4px);
+    @include transition(border, 0.35s, ease-out);
+    @include flex-center;
+    display: inline-flex;
+    gap:rem(8);
+    span, img, svg{
+        position:relative;
+    }
+    svg, img{
+        transform:translateX(0px);
+        @include transition(transform, 0.35s, ease);
+    }
+    &::before{
+        @include pseudo-cover;
+        display:block;
+        left: -100%;
+        transition: left 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        width:100%;
+        height: 100%;
+        background: $clr-primary;
+        @include border-radius(4px);
+    }
+    &:hover{
+        &::before{
+            left: 0;
+        }
+        svg, img{
+            transform:translateX(5px);
+        }
+    }
+    &--medium{
+        width: 50%;
+    }
+    &--large{
+        width: 100%;
+    }
+}
+
+.btn--primary{
+    background-color:$clr-primary;
+    @include breakpoint-xxl{
+        gap:rem(12);
+    }
+    &::before{
+        background:$clr-secondary;
+    }
+}
+
+.btn--secondary{
+    color:$clr-white; 
+    background-color: $clr-secondary;
+    &:before{
+        background:$clr-primary;
+    }
+}
+
+.btn--transparent{
+    background-color:transparent;
+    padding: 0;
+    text-decoration: underline;
+    text-decoration-color: $clr-secondary;
+    text-underline-offset: 3px;
+    span{
+        @include link-hover-effect($clr-secondary, $clr-primary);
+    }
+    &::before{
+        content: "";
+        background: transparent;
+    }
+    &:hover{
+        text-decoration-color: $clr-primary;
+        span{
+            background-position: 0 0;
+        }
+    }
+
+}
+
+.btn--outline{
+    border:1px solid $clr-primary;
+    color:$clr-primary;
+    background: $clr-white;
+    &:hover{
+        color:$clr-white;
+        // border-color: $clr-white;
+    }
+}
+
+// New Buttons
+.btn-wrapper{
+    @include flex-center-vertical;
+    flex-wrap: wrap;
+    gap:rem(12);
+    @include breakpoint-sm{
+        gap:rem(16);
+    }
+    @include breakpoint-md{
+        gap:rem(18);
+    }
+    @include breakpoint-xl{
+        gap:rem(24);
+    }
+    @include breakpoint-xxl{
+        gap:rem(32);
+    }
+}
+
+.read-link{
+    &:hover{
+        span{
+            color:$clr-primary;
+        }
+    }
+}
+
+button{
+    cursor: pointer;
+}

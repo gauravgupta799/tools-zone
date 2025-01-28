@@ -1,0 +1,162 @@
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/breakpoints' as *;
+
+.main-content{
+    overflow: hidden;
+}
+
+.overlay{
+    position: fixed;
+    inset: 0;
+    @include dimensions(100%, 100vh);
+    background: rgba(0,0,0,0.8);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    z-index: 8;
+    opacity: 0;
+    visibility: hidden;
+    @include breakpoint-lg{
+        display: none;
+    }
+    &.active{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+//?--------- Custom Play Button Styles Start ---------
+.video-action-btn{
+    background: $clr-secondary;
+    box-shadow: 0 0 20px 0 rgba(255, 119, 87, 0.25);
+    @include border-radius(half);
+    @include flex-center;
+    @include animation(rippel, 1.25s, ease-in-out, infinite);
+    @include transition(all, 0.25s, ease-in-out);
+    padding: em(24);
+    @include breakpoint-sm{
+        padding:em(32);
+    }
+    @include breakpoint-xl{
+        padding:em(36);
+    } 
+    span{
+        svg{
+            width: rem(20);
+            height: auto;
+            @include breakpoint-sm{
+                width: rem(24);
+            }
+            @include breakpoint-md{
+                width: rem(28);
+            }
+        }
+    }
+}
+
+.play-btn{
+    @include flex-center;
+    margin-left: 4px;
+}
+
+@include keyframes(rippel){
+    0% {
+        box-shadow: 0 0 0 0px rgba(255, 119, 87, 0.1);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(255, 119, 87, 0.1);
+    }
+}
+
+//?--------- Custom Play Button Styles End ---------
+.grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap:rem(64);
+    @include breakpoint-md{
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap:rem(32);
+        row-gap:rem(64);
+    }
+    @include breakpoint-lg{
+        grid-template-columns: repeat(3, 1fr); 
+        // row-gap:rem();
+    }
+    @include breakpoint-xl{
+        grid-template-columns: repeat(4, 1fr); 
+    }
+}
+
+.img-hover{
+    position: relative;
+    overflow: hidden;
+    img{
+        transition:transform 0.3s ease-in; 
+    }
+    &:hover{
+        img{
+            transform:scale(1.065);
+        }
+    }
+}
+
+video{
+    @include full-dimensions;
+    display: block;
+}
+
+.home-hero-banner{
+    .swiper-slide{
+        height: 80vh !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    .swiper-slide > figure > img{
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+    
+    .swiper-figcaption{
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        transform:translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        @include border-radius(4px);
+        width: 50rem;
+        text-align: center;
+        a{
+            margin-inline:auto;
+        }
+    }
+}
+
+.swiper-pagination-bullet{
+    position: relative;
+    width: 22px !important;
+    height: 22px !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+    &::before{
+        content:"";
+        position: absolute;
+        inset:0;
+        width: 14px !important;
+        height: 14px !important;
+        background-color: currentColor;
+        @include border-radius("full");
+        margin:auto;
+        @include transition(all , 0.3s, ease);
+    }
+}
+
+.swiper-pagination-bullet-active{
+    @include transition(all , 0.3s, ease);
+    transform:scale(1.05) !important;
+    border:2px solid currentColor;
+} 

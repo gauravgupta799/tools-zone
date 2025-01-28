@@ -1,0 +1,176 @@
+@use '../abstract/breakpoints' as *;
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+
+
+.product-price{
+    font-size: rem(18);
+    font-family: $ff-primary;
+    color:$clr-tertiary;
+    @include breakpoint-lg{
+        font-size: rem(20);
+    }
+}
+
+.filter-group,
+.filter-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap:em(16);
+}
+
+.filter-group{
+    position: relative;
+    border:1px solid $clr-bg-light;
+    padding-inline:em(12);
+    height: rem(40);
+    gap: rem(8);
+    // width: min(100%, 16rem);
+  
+    span{
+        cursor: pointer;
+        opacity: 0.8;
+    }
+    &:hover{
+        span{
+            opacity: 1;
+        }
+    }
+}
+
+select{
+    border:none;
+    outline: none;
+    background: transparent;
+    height: 100%;
+    padding-inline:em(6);
+    font-size: rem(14);
+    font-family: $ff-regular;
+    cursor: pointer;
+    @include breakpoint-xxl{
+        font-size: rem(16);
+    }
+
+    option{
+        font-size: rem(14) !important;
+        font-family: $ff-regular !important; 
+    }
+}
+
+.filter-options-wrapper{ 
+    position: absolute;
+    top: 40px;
+    z-index: 1;
+    background: $clr-white;
+    border: 1px solid $clr-light-grey;
+    left: 0;
+    box-shadow:0 0 4px rgba(0, 0, 0, 0.25);
+    width: 16rem;
+    display: none;
+    &.isActive{
+        display: block;
+       
+    }
+}
+
+.filter-options-group{
+    border-top:1px solid $clr-light-grey;
+}
+
+.filter-option-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:em(8) em(16);
+    &:hover{
+        background: $clr-light-grey;
+    }
+}
+
+.filter-option{
+    padding-left:em(32);
+    font-size: rem(14);
+    line-height: 2.5;
+    border-top:1px solid $clr-light-grey;
+    &:hover{
+        cursor: pointer;
+        background-color: $clr-secondary;
+        color:$clr-white;
+    }
+
+}
+
+
+
+.accordian{
+    cursor: pointer;
+    @include transition(background, 0.2s, ease);
+    svg{
+        @include transition(transform, 0.2s, ease);
+    }
+    &.isOpened{
+        background: $clr-light-grey;
+        svg{
+            transform:rotate(-180deg);
+        }
+    }
+}
+
+
+.accordian-content{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+
+// ====== Qunatity Input Styles Start ======
+.qty-input {
+	overflow: hidden;
+    background:$clr-white;
+	color: $clr-black;
+	display: inline-flex;
+	align-items: center;
+    border:1px solid $clr-black;
+    height: 2.5rem;
+    @include border-radius(6px);
+}
+
+.qty-count-minus,
+.qty-count-add{
+    height: 100%;
+    border:none;
+    cursor: pointer;
+}
+
+
+.product-qty{
+    appearance: textfield;	
+    border: none;
+    outline:none;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    color: inherit;
+    font-size: inherit;
+    font-family: $ff-primary;
+    width: 50px;
+    height: 100%;
+    line-height: 1;
+    // border-left: 1px solid $clr-light-grey;
+    // border-right: 1px solid $clr-light-grey;
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+    }
+}
+// ====== Qunatity Input Styles End ======

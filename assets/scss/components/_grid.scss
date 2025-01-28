@@ -1,0 +1,30 @@
+@use '../abstract/breakpoints' as *;
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+
+
+.grid{
+    display:grid;
+    gap:rem(48);
+    grid-template-columns: repeat(1 ,1fr);
+    @include breakpoint-sm{
+        grid-template-columns: repeat(2 ,1fr);
+        column-gap: rem(20);
+    }
+    @include breakpoint-md{
+        grid-template-columns: repeat(3 ,1fr);
+    }
+    @include breakpoint-lg{
+        column-gap: rem(16);
+    }
+    @media screen and (min-width: em(1400)) {
+        grid-template-columns: repeat(4 ,1fr);
+        gap:rem(48) rem(32);
+    }
+    // @include breakpoint-xxl{
+    //     // grid-template-columns: repeat(4 ,1fr);
+    //     gap:rem(48) rem(32);
+    // }
+}

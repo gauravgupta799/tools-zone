@@ -1,0 +1,75 @@
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/breakpoints' as *;
+
+
+.filter-switch {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 2px solid $clr-primary;
+  @include border-radius(6px);
+  height: rem(48);
+  width: min(100%, 60rem);
+
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border: none;
+    flex: 1;
+    z-index: 1;
+    @include border-radius(6px);
+    @include transition(all, 0.35s, ease);
+    font-family: $ff-primary;
+    font-size: 14px;
+    cursor: pointer;
+    @include breakpoint-sm{
+      font-size:16px;
+    }
+    @include breakpoint-lg{
+      font-size:18px;
+    }
+  }
+
+  .background {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    // width: 49%;
+    @include border-radius(6px);
+    background-color: $clr-primary;
+    width: 33%;
+    height:38px;
+    transition: left 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+
+#option2:checked ~ .background {
+  left: 33%;
+}
+
+#option3:checked ~ .background {
+  left: 66%;
+}
+
+
+#option1:checked + label[for="option1"],
+#option2:checked + label[for="option2"],
+#option3:checked + label[for="option3"]   {
+  color: $clr-white;
+}
+
+#option1:not(:checked) + label[for="option1"],
+#option2:not(:checked) + label[for="option2"],
+#option3:not(:checked) + label[for="option3"] {
+  color: #7d7d7d;
+}

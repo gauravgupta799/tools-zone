@@ -1,0 +1,104 @@
+@use "../abstract/breakpoints" as *;
+@use "../abstract/colors" as *;
+@use "../abstract/font" as *;
+@use "../abstract/function" as *;
+@use "../abstract/mixins" as *;
+
+
+.header{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    background-color: transparent;
+    @include transition(top, 0.5s, ease-out);
+    padding-block:em(24);
+    background: $clr-primary;
+
+    &.hidden{
+        top: rem(-110);
+    }
+    &__wrapper{
+        width: 100%;
+        @include flex-center-vertical;
+        justify-content: space-between;
+    }
+    &__right{
+        @include flex-center-vertical;
+        gap:1.25rem;
+        @include breakpoint-xxl{
+            gap:1.5rem;
+        }
+        @include breakpoint-xxxl{
+            gap:2rem;
+        }
+    }
+
+    &--white{
+        background: $clr-white;
+    }
+
+    &.sticky{
+        box-shadow: 0 0 5px rgba(0,0, 0, 0.5);
+    }
+}
+
+
+.hamburger-wrapper{
+    cursor: pointer;
+    display: block;
+    @include breakpoint-lg{
+        display: none;
+    }
+}
+
+// ===== Close-Menu-Button Start ===========
+.close-menu-btn{
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    &:hover{
+        cursor: pointer;
+        svg path{
+            fill:$clr-secondary;
+        }
+    }
+}
+// ===== Close-Menu-Button Start ===========
+
+
+//====== Socials Styles Start =======
+.socials{
+    &__list{
+        &--mobile{
+            @include  flex-center-vertical;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            @media (min-width:20em){
+                gap: 2rem;
+            }
+            @include breakpoint-xxl{
+                justify-content: flex-end;  
+            }
+            li{
+                position: relative;
+                overflow: hidden;
+            }
+        }
+    }
+}
+//====== Socials Styles End =======
+
+.connect-wrapper{
+    .footer__link-title{
+        font-size: rem(18);
+        line-height: 2;
+        font-family: $ff-primary;
+    }
+    .footer__link{
+        color:$clr-white;
+        line-height: 1.8;
+    }
+}

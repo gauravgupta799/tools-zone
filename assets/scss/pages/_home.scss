@@ -1,0 +1,282 @@
+@use '../abstract/colors' as *;
+@use '../abstract/function' as *;
+@use '../abstract/font' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/breakpoints' as *;
+
+
+.home{
+    .swiper-slide{
+        figure{
+            position: relative;
+            z-index: 1;
+            &::before{
+                content:"";
+                position: absolute;
+                inset:0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.25);
+            }
+        }
+    }
+}
+
+.cartegory-card{
+    .category-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        // height: 60px;
+        background: $clr-primary;
+        padding-block:em(16);
+        text-align: center;
+        border-top-left-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        figure{
+            @include flex-center;
+            @include dimensions(rem(64), rem(64));
+            @include border-radius(50%);
+            background: $clr-secondary;
+            border:1px solid $clr-primary;
+            position: absolute;
+            left: 0;
+            @include breakpoint-lg{
+                @include dimensions(rem(80), rem(80));
+            }
+        }
+        h5{
+            color:$clr-white;
+        }
+    }
+    
+    .category-body{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .category-list{
+        li{
+            line-height: 2.5;
+        }
+    }
+
+}
+
+.offer{
+    &__wrapper{
+        position: relative;
+    }
+    &__info{
+        position: absolute;  
+        top: 0;
+        margin-top: rem(16);
+        right: rem(32);
+
+        @include breakpoint-sm{
+            margin-top: rem(28);
+        }
+        @include breakpoint-md{
+            margin-top: rem(48);
+        }
+
+        .offer-subTitle{
+            padding:em(5) em(12);
+            background: yellow;
+            color:$clr-black;
+            font-size: rem(14);
+            text-transform: uppercase;
+            @include breakpoint-md{
+                font-size: rem(16);
+            }
+            @include breakpoint-xl{
+                font-size: rem(18);
+            }
+        }
+        .offer-discount{
+            font-size: rem(14);
+            text-transform: capitalize;
+            @include breakpoint-md{
+                font-size: rem(16);
+            }
+            @include breakpoint-xl{
+                font-size: rem(18);
+            }
+        }
+    }
+}
+
+
+.offer-grid{
+    display: grid;
+    gap: rem(16);
+    background-color: #000;
+
+    .item-1 {
+        grid-row: 1 / span 2;
+      }
+      
+      .item-2{
+          grid-column:2/4;
+      }
+      
+}
+
+
+// Cart Page Styles Start ============
+.cart{
+    &__table{
+        width: 100%;
+        overflow:auto;
+    }
+    &__head-row{
+        border-bottom:1px solid $clr-light-grey;
+        background-color: $clr-bg-light-2;
+    }
+    &__head-row{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:em(10) em(16);
+    }
+    &__head-title{
+        font-size: rem(18);
+        font-family: $ff-primary;
+        @include breakpoint-md{
+            font-size: rem(20);
+        }
+        @include breakpoint-xxl{
+            font-size: rem(22);
+        }
+    }
+}
+
+.cart-item{
+    padding-block:em(32);
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid $clr-light-grey;
+    align-items: center;
+    &__image{
+        display: flex;
+        flex-wrap: wrap;
+        gap:rem(16);
+        figure{
+            width: rem(130);  
+        }
+        @include breakpoint-md{
+            gap:rem(20)
+        }
+        @include breakpoint-lg{
+            gap:rem(24)
+        }
+    }
+    &__info{
+        p{
+            font-size: rem(16);
+            line-height: 1.65;
+            @include breakpoint-xl{
+                font-size: rem(16);
+            }
+        }
+        .prdct-name{
+            font-family: $ff-primary;
+
+        }
+    }
+    &__quantity{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        width: rem(144);
+        height: 48px;
+        
+    }
+    &__quantity-input{
+        width: 100%;
+        outline:none;
+        border: 1px solid $clr-grey-1;
+        @include border-radius(4px);
+        @include flex-center;
+        height: rem(40);
+        gap:rem(16);
+        padding-inline:em(16);
+       
+        button{
+            cursor: pointer;
+            background-color: transparent;
+            font-size: rem(20);
+            @include breakpoint-md{
+                font-size: rem(22);
+            }
+            @include breakpoint-lg{
+                font-size: rem(24);
+            }
+        }
+        .quantity-input{
+            width: rem(32);
+            text-align: center;
+            font-size: rem(18);
+            @include breakpoint-md{
+                font-size: rem(20);
+            }
+        }
+    }
+    &__remove-btn{
+        border:none;
+        background:transparent;
+    }
+}
+
+.cart-subtotal{
+    border:1px solid $clr-grey-1;
+    &__wrapper{
+        border-top:1px solid $clr-grey-1;
+    }
+    &__value-box{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: rem(16);
+        font-family: $ff-regular;
+    }
+}
+
+.discount-input{
+    width: 45%;
+    border: 1px solid $clr-grey-1;
+    height: rem(40);
+    padding-left:em(10);
+    font-size: rem(14);
+    font-family: $ff-regular;
+    @include border-radius(4px);
+}
+
+.cart-total{
+    @extend .cart-subtotal__value-box;
+    border-top:1px solid $clr-grey-1;
+    border-bottom:1px solid $clr-grey-1;
+}
+
+.our-mission,
+.our-vision{
+    img{
+        @include border-radius(6px);
+    }
+}
+
+.category-header,
+.category-list{
+    a{
+        @include transition(all, 0.3s, ease);
+        &:hover{
+            color:$clr-secondary;
+            text-decoration: underline;
+            text-decoration-color: $clr-secondary;
+            -moz-text-decoration-color: $clr-secondary;
+        }
+    }
+}

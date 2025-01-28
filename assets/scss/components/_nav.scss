@@ -1,0 +1,414 @@
+@use '../abstract/breakpoints' as *;
+@use '../abstract/colors' as *;
+@use "../abstract/font" as *;
+@use '../abstract/function' as *;
+@use '../abstract/mixins' as *;
+
+
+//======= Navbar Styles Start ======
+.nav{
+    &--desktop{
+        .nav-list{
+            @include flex-center-vertical;
+            // display: none;
+            @include breakpoint-lg{
+                // display: flex;
+                gap: rem(22);
+            }
+            @include breakpoint-xl{
+                gap: rem(32);
+            }
+            @include breakpoint-xxl{
+                gap: rem(40);
+            }
+        }
+        .nav__link{
+            font-size: rem(14);
+            line-height: 1.5;
+            text-transform: capitalize;
+            color:$clr-white;
+            font-family: $ff-regular;
+            @include breakpoint-xl{
+                font-size: rem(16);
+            }
+        }
+
+        display: none;
+        @include breakpoint-lg{
+            display: flex;
+        }
+    }
+    &__item{
+        position: relative;
+        overflow: hidden;
+    }
+    &__link {
+        color:$clr-white;
+        font-family: $ff-regular;
+        font-size: rem(16);
+        line-height: 1.5;
+        display: inline-flex;
+        align-items: center;
+        @include transition(color, 0.2s, ease);
+        &:hover{
+            color:$clr-secondary;
+        }
+    }
+    &--mobile{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        @include breakpoint-md{
+            gap:rem(192);
+        }
+        @include breakpoint-lg{
+            flex-wrap: nowrap;
+            gap:rem(96);
+        }
+    }
+}
+
+.nav__link{
+    &.active{
+        color:$clr-secondary;
+    }
+}
+
+.nav-right{
+    @include flex-space-between;
+    gap:rem(10);
+    @media screen and (min-width: 480px) {
+        gap:rem(16)
+    }
+}
+//======== Navbar Styles End ========
+
+
+//===== Mobile Menu Styles Start =======
+.mobile-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    // width: 100%;
+    // min-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 9;
+    background: $clr-primary;
+    transform:translateX(-100%);
+    transition:transform 0.2s ease-out;
+    padding-bottom: rem(32);
+    width: min(75%, 40rem);
+    @include breakpoint-lg{
+        transform:translateX(-100%) !important;
+    }
+    &__inner{
+        display: flex;
+    }
+    &__list{
+        li{
+            @include relative-hidden;
+        }  
+    }
+    &__link{
+        @include relative-hidden;
+        text-transform: capitalize;
+        font-size: rem(24);
+        line-height: 1.8;
+        font-family: $ff-primary;
+        display: inline-flex;
+        align-items: center;
+        gap:rem(10);
+        @include breakpoint-sm{
+            font-size: rem(28);
+        }
+        @include breakpoint-md{
+            font-size: rem(32);
+        }
+        span{
+            display: inline-flex;
+            margin: 0;
+            color:white;
+        }
+    }
+
+    &.is-open{
+        transform:translateX(0);
+    }
+}
+//===== Mobile Menu Styles End ==========
+
+
+//===== SubMenu Styles Start ===========
+.subMenu{
+    @include relative-hidden;
+    &__list{
+        position: absolute;
+        background: $clr-white;
+        @include border-radius(4px);
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+        transform: translateY(10px);
+        transition:transform 0.2s ease;
+        list-style: none;
+        z-index: 1;
+
+        li{
+            @include relative-hidden;
+            @include border-radius(4px);
+            white-space: nowrap;
+            // @include hover-effect($clr-secondary);
+
+            ul{
+                display: none;
+                list-style: none;
+                position: absolute;
+                left: 100%;
+                top: 0;
+                background-color: $clr-primary;  
+            }
+        
+            &:hover{
+                cursor: pointer;
+                background: $clr-secondary;
+                // &::before{
+                //     transform: translateX(0);
+                // }
+                a{
+                    color:$clr-white;
+                }
+                ul{
+                    display: inherit;
+                }
+            }
+        }
+
+        &--mobile{
+            @include border-radius(4px);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+
+            li{
+                @include relative-hidden;
+                z-index: 1;
+                @include border-radius(4px);
+                @include hover-effect($clr-secondary);
+                a{
+                    transform:translateY(0);
+                    color:$clr-white;
+                    font-size: rem(18);
+                    font-family: $ff-primary;
+                    padding-block:0.7em;
+                    @include breakpoint-lg{
+                        font-size: rem(20);
+                    }
+                }
+                &:hover{
+                    &::before{
+                        transform: translateY(0);
+                    }
+                    a{
+                        color:$clr-white;
+                    }
+                }
+            }
+        }
+    }
+
+    &__link{
+        $n:10;
+        display: inline-block;
+        color:$clr-black;
+        font-size: rem(14);
+        line-height: 1.15;
+        padding:1em;
+        font-family:$ff-regular;
+        transform: translateY(50px);
+        transition: transform .2s ease;
+        transition-duration: 0.5s;
+        text-transform: capitalize;
+        width: 100%;
+
+        @for $i from 1 through $n {
+            &:nth-of-type(#{$i}) {
+              transition-delay: 0.1s * $i;
+            }
+        } 
+    }
+
+    &:hover{
+        cursor: pointer;
+        overflow: visible;
+
+        .subMenu__list,  
+        .subMenu__link{
+            transform: translateY(0px);
+        }
+
+        .nav__link{
+            span{
+                color:$clr-secondary;
+            }
+            .caret-down-icon{
+                svg{
+                    transform: rotate(180deg);
+                    transform-origin: center;
+                    path{
+                        fill:$clr-secondary;
+                    }
+                }
+            }
+        }
+    }
+}
+.mobile-submenu{
+    &__link-wrapper{
+        @include flex-space-between;
+        cursor: pointer;
+    }
+    &.active{
+        .dropdown-icon{
+            svg{
+                transform: rotate(182deg) translateY(-2px);
+                transform-origin: center;
+                path{
+                    fill:$clr-secondary;
+                }
+            }
+        }
+        .mobile-menu__link{
+            span{
+               color:$clr-secondary;
+            }
+        }
+    }
+}
+//===== SubMenu Styles End ===========
+
+
+// ====== Dropdown Styles Start =======
+.dropdown{
+    &__wrapper{
+        position: absolute;
+        left: -18px;
+        top: 24px; 
+        background-color: $clr-white;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        @include border-radius(4px);
+        height: 0;
+        scale: 0;
+        opacity: 0;
+        visibility: hidden;
+        cursor:none;
+        width: 13rem;
+    }
+    &__header{
+        @include flex-space-between;
+        padding:em(12) em(16);
+        border-bottom:1px solid $clr-grey-1;
+        p{
+            margin-bottom: 0;
+            font-size: rem(14);
+            line-height: 1.5;
+        }
+        a{
+            color:$clr-primary;
+            font-size:rem(14);
+            &:hover{
+                color:$clr-secondary;
+            }
+        }
+    }
+    &__link{
+        @include flex-center-vertical;
+        gap:rem(8);
+        padding:em(12);
+        @include transition(all, 0.25s, ease);
+        &:hover {
+            cursor: pointer;
+            background-color:$clr-secondary;
+            span{
+                color:$clr-white;
+            }
+            svg path{
+                fill:$clr-white;
+            }
+        }
+    }
+}
+// ====== Dropdown Styles End =======
+
+
+// ====== Cart Styles Start ======
+.cart-wrapper{
+    position: relative;
+    .count{
+        position: absolute;
+        top: -12px;
+        right: -12px;
+        width:rem(24);
+        height:rem(24);
+        @include border-radius("full");
+        background-color: $clr-secondary;
+        color:$clr-white;
+        @include flex-center;
+        font-size: rem(12);
+    }
+
+    &:hover{
+        cursor: pointer;
+        svg path{
+            fill:$clr-secondary;
+        }
+    }
+}
+// ====== Cart Styles End ======
+
+.submenu-service-link {
+    @include flex-space-between;
+}
+
+.arrow-down{
+    transition:transform 0.3s ease;
+}
+
+.login-btn{
+    background: transparent;
+    border:none;
+    outline: none;
+    @include flex-center-vertical;
+    gap:rem(5);
+    cursor: pointer;
+    span{
+        color:$clr-white;
+        font-size:rem(14);
+        @include breakpoint-xl{
+            font-size: rem(16);
+        }
+    }
+}
+
+.login-box-wrapper{
+    position: relative;
+    &:hover{
+        cursor: pointer;
+        .dropdown__wrapper{
+            visibility: visible;
+            opacity: 1;
+            cursor: pointer;
+            height: auto;
+            scale:1;
+        }
+        .arrow-down{
+            transform:rotate(-180deg);
+        }
+        .login-btn{
+            span{
+                color:$clr-secondary;
+                svg path{
+                    fill:$clr-secondary;
+                }
+            }
+        }
+    }
+}

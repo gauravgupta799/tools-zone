@@ -1,0 +1,40 @@
+// ======== BDOGrotesk-Regular =============
+@font-face {
+    font-display:swap;
+    src: url("../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.eot"); 
+    src: url("../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.eot") format("embedded-opentype"), 
+         url("../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.woff2") format("woff2"), 
+         url("../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.woff") format("woff"), 
+         url("../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.ttf") format("truetype"),
+         url('../assets/fonts/BDOGrotesk-regular/BDOGrotesk-Regular.svg#BDOGrotesk-Regular') format('svg');
+    font-family: "BDOGrotesk-Regular";
+} 
+
+// ======== BDOGrotesk-Regular =============
+@font-face {
+    font-display:swap;
+    src: url("../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.eot"); 
+    src: url("../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.eot") format("embedded-opentype"), 
+         url("../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.woff2") format("woff2"), 
+         url("../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.woff") format("woff"), 
+         url("../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.ttf") format("truetype"),
+         url('../assets/fonts/BDOGrotesk-bold/BDOGrotesk-DemiBold.svg#BDOGrotesk-Bold') format('svg');
+    font-family: "BDOGrotesk-Bold";
+} 
+
+// ======== BDOGrotesk-Regular =============
+@font-face {
+    font-display:swap;
+    src: url("../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.eot"); 
+    src: url("../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.eot") format("embedded-opentype"), 
+         url("../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.woff2") format("woff2"), 
+         url("../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.woff") format("woff"), 
+         url("../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.ttf") format("truetype"),
+         url('../assets/fonts/BDOGrotesk-extra-bold/BDOGrotesk-ExtraBold.svg#BDOGrotesk-Extra-bold') format('svg');
+    font-family: "BDOGrotesk-Extra-bold";
+} 
+// =========== other font ================
+
+$ff-regular:"BDOGrotesk-Regular", sans-serif;
+$ff-primary:'BDOGrotesk-Bold', sans-serif;
+$ff-secondary:'BDOGrotesk-Extra-bold',sans-serif;

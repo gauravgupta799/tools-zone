@@ -1,0 +1,73 @@
+@use '../abstract/mixins' as *;
+@use '../abstract/function' as *;
+@use '../abstract/colors' as *;
+@use '../abstract/breakpoints' as *;
+@use '../abstract/font' as *;
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+  
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body{
+  font-size: rem(16);
+  counter-reset:custom-counter;
+  line-height: 1.25;
+}
+
+div,ul,ol,li,
+h1, h2, h3,h4,h5,h6,
+pre,
+form, fieldset,
+input,textarea,
+p,
+blockquote,table,thead, tbody,
+tr,th,td {
+    margin: 0;
+    padding: 0;
+    border:0;
+    border-spacing:0;
+}
+
+address{
+  font-style: unset;
+}
+  
+a {
+  text-decoration: none;
+  color:$clr-black;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+small{
+  display:inline-block;
+  font-size: rem(14);
+  font-family: $ff-regular;
+}
+
+button{
+  border:none;
+  outline:none;
+}
+
+
+img, video, figure{
+  display: block;
+  object-fit: cover;
+}

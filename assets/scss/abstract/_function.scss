@@ -1,0 +1,19 @@
+@use "sass:math";
+
+$browser-context:16;
+// ======== convert pixel to rem ==============
+@function rem($pixels, $context: $browser-context) {
+    $result: math.div($pixels, $context) * 1rem;
+    @return $result;
+}
+
+
+// ======== convert pixel to em ==============
+@function em($pixels, $context: $browser-context) {
+    $result: math.div($pixels, $context) * 1em;
+    @return $result;
+}
+
+// for show and hide navigation
+$navbar-height-lg:rem(80);
+$navbar-height:rem(70);
