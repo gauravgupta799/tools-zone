@@ -17125,7 +17125,7 @@ video {
   background: rgba(255, 255, 255, 0.5);
   padding: 2rem;
   border-radius: 4px;
-  width: 50rem;
+  width: min(90%, 50rem);
   text-align: center;
 }
 .home-hero-banner .swiper-figcaption a {
