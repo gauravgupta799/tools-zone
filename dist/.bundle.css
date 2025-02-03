@@ -17854,6 +17854,9 @@ button[type=submit] {
 .btn:hover svg, .btn:hover img {
   transform: translateX(5px);
 }
+.btn--quarter {
+  width: 25%;
+}
 .btn--medium {
   width: 50%;
 }
