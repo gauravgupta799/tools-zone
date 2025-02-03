@@ -286,6 +286,19 @@ const supportSwiper = new Swiper(".swiper-support", {
   }
 });
 
+// const BrandsSwiper = new Swiper(".swiper-brands", {
+//   spaceBetween:30,
+//   loop:true,
+//   speed:12000,
+//   slidesPerView:"auto",
+//   freeMode:true,
+//   autoplay: {
+//     delay: 0,
+//     disableOnInteraction: false, // Keep autoplay even after user interaction
+//   },
+//   freeModeMomentum: false, // Disable momentum to keep a constant scroll
+// });
+
 const testimonailSwiper = new Swiper(".swiper-testimonial", {
   loop:true,
   speed: 1000,
@@ -329,10 +342,6 @@ const productSwiper = new Swiper(".swiper-prdct-container", {
     }
   }
 });
-
-
-
-
 
 
 // animation on text container

@@ -18477,6 +18477,14 @@ button {
   display: flex;
   justify-content: space-between;
 }
+.cartegory-card .category-body figure {
+  height: 11.25rem;
+}
+.cartegory-card .category-body figure img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .cartegory-card .category-list li {
   line-height: 2.5;
 }
@@ -18703,6 +18711,15 @@ button {
   text-decoration: underline;
   text-decoration-color: #D6BD98;
   -moz-text-decoration-color: #D6BD98;
+}
+
+.brands figure {
+  height: 150px;
+  width: 200px;
+}
+.brands figure img {
+  width: 100%;
+  height: 100%;
 }
 
 .our-outline {
