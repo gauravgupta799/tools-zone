@@ -13,7 +13,7 @@
     z-index: 5;
     background-color: transparent;
     @include transition(top, 0.5s, ease-out);
-    padding-block:em(24);
+    padding-block:em(8);
     background: $clr-primary;
 
     &.hidden{

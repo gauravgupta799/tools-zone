@@ -18219,7 +18219,7 @@ button {
   z-index: 5;
   background-color: transparent;
   transition: top 0.5s ease-out;
-  padding-block: 1.5em;
+  padding-block: 0.5em;
   background: #1A3636;
 }
 .header.hidden {
