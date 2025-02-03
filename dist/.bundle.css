@@ -821,8 +821,6 @@ button {
 
 img, video, figure {
   display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 h1 {
@@ -18482,8 +18480,6 @@ button {
 }
 .cartegory-card .category-body figure img {
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .cartegory-card .category-list li {
   line-height: 2.5;
